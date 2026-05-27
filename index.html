@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wang Yihang | Aerospace × AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      font-family:Arial, Helvetica, sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    /* ===== NAV ===== */
+
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.5);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-inner{
+      height:70px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:bold;
+      color:#4da3ff;
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:30px;
+    }
+
+    .nav-links a{
+      color:#d0d7ff;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#4da3ff;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      background:
+      radial-gradient(circle at top right,#123766 0%,transparent 30%),
+      radial-gradient(circle at bottom left,#091d3c 0%,transparent 30%),
+      #050816;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:800px;
+      height:800px;
+      background:rgba(77,163,255,0.08);
+      border-radius:50%;
+      top:-300px;
+      right:-300px;
+      filter:blur(80px);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:10;
+    }
+
+    .hero h1{
+      font-size:72px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero h1 span{
+      color:#4da3ff;
+    }
+
+    .hero p{
+      color:#b5c3ff;
+      font-size:22px;
+      line-height:1.8;
+      max-width:800px;
+    }
+
+    .hero-buttons{
+      margin-top:40px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border-radius:10px;
+      border:1px solid #4da3ff;
+      transition:0.3s;
+      font-size:18px;
+    }
+
+    .btn-primary{
+      background:#4da3ff;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#1f7be0;
+    }
+
+    .btn-outline:hover{
+      background:#4da3ff;
+    }
+
+    /* ===== SECTION ===== */
+
+    section{
+      padding:100px 0;
+    }
+
+    .section-title{
+      font-size:42px;
+      margin-bottom:20px;
+      color:#4da3ff;
+    }
+
+    .section-sub{
+      color:#b5c3ff;
+      margin-bottom:50px;
+      line-height:1.8;
+    }
+
+    /* ===== CARDS ===== */
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:20px;
+      padding:30px;
+      transition:0.3s;
+      backdrop-filter:blur(10px);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      border-color:#4da3ff;
+      box-shadow:0 0 30px rgba(77,163,255,0.15);
+    }
+
+    .card h3{
+      font-size:24px;
+      margin-bottom:15px;
+      color:#ffffff;
+    }
+
+    .card p{
+      color:#b5c3ff;
+      line-height:1.8;
+    }
+
+    /* ===== SKILLS ===== */
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    .skill{
+      padding:12px 20px;
+      border-radius:999px;
+      background:#101935;
+      border:1px solid rgba(255,255,255,0.08);
+      color:#d0d7ff;
+      transition:0.3s;
+    }
+
+    .skill:hover{
+      background:#4da3ff;
+    }
+
+    /* ===== TIMELINE ===== */
+
+    .timeline{
+      border-left:2px solid rgba(77,163,255,0.4);
+      padding-left:30px;
+    }
+
+    .timeline-item{
+      margin-bottom:40px;
+      position:relative;
+    }
+
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      left:-39px;
+      top:6px;
+      width:14px;
+      height:14px;
+      background:#4da3ff;
+      border-radius:50%;
+    }
+
+    .timeline-item h3{
+      color:white;
+      margin-bottom:10px;
+    }
+
+    .timeline-item p{
+      color:#b5c3ff;
+      line-height:1.8;
+    }
+
+    /* ===== FOOTER ===== */
+
+    footer{
+      padding:50px 0;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:#b5c3ff;
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .hero p{
+        font-size:18px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">WYH</div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#awards">Awards</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <h1>
+        Wang <span>Yihang</span>
+      </h1>
+
+      <p>
+        Aerospace Engineering × Artificial Intelligence × Intelligent Systems
+        <br><br>
+        国防科技大学航空航天工程专业本科生，
+        聚焦 AI、智能控制、嵌入式系统、无人机轨迹规划与数字可视化方向。
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+
+        <a class="btn btn-outline"
+           href="https://github.com/yihangwang37-del"
+           target="_blank">
+          GitHub
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">About Me</h2>
+
+      <p class="section-sub">
+        具备扎实的航空航天理论基础与工程实践能力，
+        熟悉 Python、MATLAB、C/C++ 等编程语言，
+        具有 AI视觉识别、嵌入式开发、轨迹规划、VR交互与数据可视化等项目经验。
+        曾以队长及第一贡献者身份获得国家级竞赛一等奖，
+        致力于航空航天与人工智能交叉领域的发展。
+      </p>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+
+      <h2 class="section-title">Projects</h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>智能基围虾自动化分拣系统</h3>
+          <p>
+            基于 Jetson Nano 与 STM32 的智能自动化系统，
+            集成 YOLO视觉识别、FreeRTOS、多任务控制、
+            舵机控制与串口通信，实现自动分拣与姿态控制。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>华夏筑境可视化平台</h3>
+          <p>
+            基于 ECharts、Three.js 与 Pannellum 构建的
+            中国古建筑智慧可视化平台，
+            包含 VR 漫游、三维模型、AI问答与交互式地图。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>无人机蜂群轨迹规划</h3>
+          <p>
+            复现 IEEE T-RO 2023 无人机集群轨迹规划算法，
+            完成多无人机队形、障碍环境与轨迹优化实验。
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="container">
+
+      <h2 class="section-title">Awards</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <h3>国家级一等奖</h3>
+          <p>
+            第十二届全国大学生机械创新设计大赛慧鱼组竞赛暨慧鱼工程技术创新大赛
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>国家级团体一等奖</h3>
+          <p>
+            第四届中国大学生飞行器设计创新大赛
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>省级三等奖</h3>
+          <p>
+            第十九届中国大学生计算机设计大赛中南赛区
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skills">
+
+        <div class="skill">Python</div>
+        <div class="skill">MATLAB</div>
+        <div class="skill">C/C++</div>
+        <div class="skill">STM32</div>
+        <div class="skill">FreeRTOS</div>
+        <div class="skill">YOLOv8</div>
+        <div class="skill">OpenCV</div>
+        <div class="skill">Three.js</div>
+        <div class="skill">ECharts</div>
+        <div class="skill">Pannellum</div>
+        <div class="skill">HTML/CSS</div>
+        <div class="skill">JavaScript</div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+
+      <h2 class="section-title">Contact</h2>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Email</h3>
+          <p>3348114061@qq.com</p>
+        </div>
+
+        <div class="card">
+          <h3>GitHub</h3>
+          <p>
+            github.com/yihangwang37-del
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Location</h3>
+          <p>
+            Changsha, China
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 Wang Yihang | Aerospace × AI × Intelligent Systems
+  </footer>
+
+</body>
+</html>
